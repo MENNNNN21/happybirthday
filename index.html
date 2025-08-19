@@ -208,10 +208,21 @@
         </p>
       </div>
       <div class="card">
-        <h3 style="margin-top:0">Kata Rahasia 🔐</h3>
-        <p class="muted">Ketik <strong>love</strong> di keyboard untuk kejutan kecil.</p>
-        <div  class="small" style="opacity:.8">Menunggu kata rahasia…</div>
-      </div>
+  <h3 style="margin-top:0">Kata Rahasia 🔐</h3>
+  <p class="muted">Ketik <strong>love</strong> di keyboard untuk kejutan kecil.</p>
+
+  <!-- Input rahasia -->
+  <input id="secretInput" 
+         placeholder="Ketik di sini..." 
+         style="width:100%; padding:12px; border-radius:12px;
+                border:1px solid #ffffff22; background:#ffffff10; 
+                color:var(--text); outline:none; margin-top:10px">
+
+  <div id="secretResult" class="small" style="opacity:.8; margin-top:8px">
+    Menunggu kata rahasia…
+  </div>
+</div>
+
     </section>
   </main>
 
@@ -367,6 +378,19 @@
         if(t<1) requestAnimationFrame(tick); else h.remove();
       }; tick();
     });
+
+    const secretInput = document.getElementById('secretInput');
+const secretResult = document.getElementById('secretResult');
+
+secretInput.addEventListener('input', () => {
+  const val = secretInput.value.toLowerCase().trim();
+  if (val.includes('love')) {
+    secretResult.textContent = 'Yay! Kamu nemu rahasianya. I love you most. 💗';
+    burstConfetti();
+    secretInput.value = ''; // kosongkan biar bisa ulangi
+  }
+});
+
   </script>
 </body>
 </html>
